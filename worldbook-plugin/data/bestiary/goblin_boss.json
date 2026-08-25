@@ -1,0 +1,80 @@
+{
+  "id": "goblin_boss",
+  "name": "哥布林头目",
+  "name_en": "Goblin Boss",
+  "size": "小型",
+  "type": "类人生物",
+  "alignment": "中立邪恶",
+  "cr": 1,
+  "challenge": "1",
+  "xp": 200,
+  "source": "SRD",
+  "stats": {
+    "hp": "21 (6d6)",
+    "hp_average": 21,
+    "ac": 17,
+    "ac_source": "链甲衬衫 + 小盾牌",
+    "speed": 30
+  },
+  "abilities": {
+    "str": 10,
+    "dex": 14,
+    "con": 10,
+    "int": 10,
+    "wis": 8,
+    "cha": 10
+  },
+  "skills": {
+    "隐匿": 6,
+    "游说": 2
+  },
+  "senses": {
+    "黑暗视觉": 60,
+    "被动察觉": 9
+  },
+  "languages": ["通用语", "哥布林语"],
+  "proficiency_bonus": 2,
+  "special_abilities": [
+    {
+      "name": "鬼祟偷袭",
+      "desc": "每回合第一次攻击有优势时，额外造成 2d6 伤害。"
+    },
+    {
+      "name": "指挥同伴",
+      "desc": "附赠动作：指定 30 尺内一个哥布林盟友，对其进行一次额外攻击。"
+    }
+  ],
+  "actions": [
+    {
+      "name": "多重攻击",
+      "desc": "头目进行两次短剑攻击。"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "短剑",
+      "type": "近战武器攻击",
+      "hit_bonus": 4,
+      "range": "5尺",
+      "damage": "1d6+2",
+      "damage_type": "穿刺"
+    },
+    {
+      "name": "短弓",
+      "type": "远程武器攻击",
+      "hit_bonus": 4,
+      "range": "80/320尺",
+      "damage": "1d6+2",
+      "damage_type": "穿刺"
+    }
+  ],
+  "reactions": [
+    {
+      "name": "卑劣闪避",
+      "desc": "当被攻击命中时，头目移动到 5 尺内的盟友格内，使本次攻击改为命中该盟友。"
+    }
+  ],
+  "equipment": ["链甲衬衫", "小盾牌", "短剑", "短弓", "20支箭", "头冠"],
+  "description": "哥布林头目是哥布林部落的首领，通常比普通哥布林更强壮也更狡猾。它们用恐惧和狡诈统治手下。",
+  "tags": ["类人生物", "哥布林", "头目", "BOSS", "低等级", "邪恶"]
+}

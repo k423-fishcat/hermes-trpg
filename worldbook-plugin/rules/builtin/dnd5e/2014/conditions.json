@@ -1,0 +1,113 @@
+{
+  "version": "2014-srd",
+  "category": "conditions",
+  "synced_at": "2026-08-25T21:42:29.000830Z",
+  "count": 15,
+  "conditions": [
+    {
+      "rule_id": "rules.dnd5e.conditions.blinded",
+      "name_zh": "目盲",
+      "name_en": "Blinded",
+      "summary": "* A blinded creature can't see and automatically fails any ability check that requires sight.\n* Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.charmed",
+      "name_zh": "魅惑",
+      "name_en": "Charmed",
+      "summary": "* A charmed creature can't attack the charmer or target the charmer with harmful abilities or magical effects.\n* The charmer has advantage on any ability check to interact socially with the creature.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.deafened",
+      "name_zh": "耳聋",
+      "name_en": "Deafened",
+      "summary": "* A deafened creature can't hear and automatically fails any ability check that requires hearing.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.exhaustion",
+      "name_zh": "力竭",
+      "name_en": "Exhaustion",
+      "summary": "* Some special abilities and environmental hazards, such as starvation and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specifie...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.frightened",
+      "name_zh": "恐慌",
+      "name_en": "Frightened",
+      "summary": "* A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\n* The creature can't willingly move closer to the source of its fear.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.grappled",
+      "name_zh": "擒抱",
+      "name_en": "Grappled",
+      "summary": "* A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\n* The condition ends if the grappler is incapacitated (see the condition).\n* The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect, such as when ...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.incapacitated",
+      "name_zh": "失能",
+      "name_en": "Incapacitated",
+      "summary": "* An incapacitated creature can't take actions or reactions.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.invisible",
+      "name_zh": "隐形",
+      "name_en": "Invisible",
+      "summary": "* An invisible creature is impossible to see without the aid of magic or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\n* Attack rolls against the creature have disadvantage, and the...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.paralyzed",
+      "name_zh": "麻痹",
+      "name_en": "Paralyzed",
+      "summary": "* A paralyzed creature is incapacitated (see the condition) and can't move or speak.\n* The creature automatically fails Strength and Dexterity saving throws.\n* Attack rolls against the creature have advantage.\n* Any attack that hits the creature is a critical hit if the attacker is within 5 feet of ...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.petrified",
+      "name_zh": "石化",
+      "name_en": "Petrified",
+      "summary": "* A petrified creature is transformed, along with any nonmagical object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\n* The creature is incapacitated (see the condition), can't move or speak, and is unaware ...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.poisoned",
+      "name_zh": "中毒",
+      "name_en": "Poisoned",
+      "summary": "* A poisoned creature has disadvantage on attack rolls and ability checks.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.prone",
+      "name_zh": "倒地",
+      "name_en": "Prone",
+      "summary": "* A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition.\n* The creature has disadvantage on attack rolls.\n* An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantag...",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.restrained",
+      "name_zh": "束缚",
+      "name_en": "Restrained",
+      "summary": "* A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\n* Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\n* The creature has disadvantage on Dexterity saving throws.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.stunned",
+      "name_zh": "昏迷",
+      "name_en": "Stunned",
+      "summary": "* A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\n* The creature automatically fails Strength and Dexterity saving throws.\n* Attack rolls against the creature have advantage.",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.unconscious",
+      "name_zh": "失去意识",
+      "name_en": "Unconscious",
+      "summary": "* An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\n* The creature drops whatever it's holding and falls prone.\n* The creature automatically fails Strength and Dexterity saving throws.\n* Attack rolls against the creature have advant...",
+      "phb_page": null
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "version": "2014-srd",
+  "category": "rest",
+  "synced_at": "2026-08-25T21:42:36.386508Z",
+  "count": 3,
+  "rules": [
+    {
+      "rule_id": "rules.dnd5e.rest.short_rest",
+      "name_zh": "短休",
+      "name_en": "Short Rest",
+      "summary": "至少 1 小时。HP 必须 ≥ 1 才能短休。消耗 1+ 命中骰，按骰结果 + 体质调整值恢复 HP。邪术师短休恢复所有契约法术位。",
+      "phb_page": 186
+    },
+    {
+      "rule_id": "rules.dnd5e.rest.long_rest",
+      "name_zh": "长休",
+      "name_en": "Long Rest",
+      "summary": "至少 8 小时（6 小时睡眠 + 最多 2 小时轻活动）。HP 必须 ≥ 1。HP 满，所有法术位满，恢复一半命中骰（向下取整，最少 1，0 命中骰的角色不获骰），清空临时 HP，重置死亡豁免，exhaustion -1。24 小时内只能长休一次。",
+      "phb_page": 186
+    },
+    {
+      "rule_id": "rules.dnd5e.rest.warlock_pact_magic",
+      "name_zh": "邪术师契约法术位",
+      "name_en": "Warlock Pact Magic",
+      "summary": "邪术师的法术位称为'契约法术位'，所有位同环级。短休恢复全部契约法术位。",
+      "phb_page": 107
+    }
+  ]
+}

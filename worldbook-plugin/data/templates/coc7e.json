@@ -1,0 +1,62 @@
+{
+  "name": "coc7e",
+  "display_name": "COC 7e",
+  "description": "Call of Cthulhu 7th Edition 调查员状态模板",
+  "default_state": {
+    "version": 0,
+    "campaign": "",
+    "template": "coc7e",
+    "investigator": {
+      "name": "",
+      "player": "",
+      "occupation": "",
+      "age": 25,
+      "gender": "",
+      "residence": "",
+      "birthplace": "",
+      "portrait": ""
+    },
+    "characteristics": {
+      "str": 50, "con": 50, "siz": 50,
+      "dex": 50, "app": 50, "int": 50,
+      "pow": 50, "edu": 50, "luk": 50
+    },
+    "derived": {
+      "hp_max": 10, "hp_current": 10,
+      "san_max": 50, "san_current": 50,
+      "mp_max": 10, "mp_current": 10,
+      "idea": 50, "knowledge": 50, "luck": 50,
+      "db": "0", "build": 0, "dodge": 25,
+      "movement": 8
+    },
+    "skills": {},
+    "occupational_skills": [],
+    "personal_interest_skills": [],
+    "background": "",
+    "ideology": "",
+    "significant_people": "",
+    "meaningful_locations": "",
+    "treasured_possessions": "",
+    "traits": "",
+    "injuries": [],
+    "conditions": [],
+    "inventory": [],
+    "cash_dollars": 0,
+    "spending_level": 0,
+    "credit_rating": 0,
+    "npcs": {},
+    "world": {},
+    "quests": {},
+    "combat": {
+      "active": false,
+      "round": 0
+    },
+    "event_log": []
+  },
+  "modifier_map": {
+    "str": "力量", "con": "体质", "siz": "体型",
+    "dex": "敏捷", "app": "外貌", "int": "智力",
+    "pow": "意志", "edu": "教育", "luk": "幸运"
+  },
+  "skill_abilities": {}
+}

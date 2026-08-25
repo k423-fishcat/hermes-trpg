@@ -1,0 +1,155 @@
+{
+  "version": "2024-srd",
+  "category": "conditions",
+  "synced_at": "2026-08-25T22:04:59.507643Z",
+  "count": 21,
+  "conditions": [
+    {
+      "rule_id": "rules.dnd5e.conditions.bloodied",
+      "name_zh": "重伤",
+      "name_en": "Bloodied",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.confused",
+      "name_zh": "困惑",
+      "name_en": "Confused",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.doomed",
+      "name_zh": "厄运",
+      "name_en": "Doomed",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.encumbered",
+      "name_zh": "负重",
+      "name_en": "Encumbered",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.rattled",
+      "name_zh": "惊魂",
+      "name_en": "Rattled",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.slowed",
+      "name_zh": "减速",
+      "name_en": "Slowed",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.blinded",
+      "name_zh": "目盲",
+      "name_en": "Blinded",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.charmed",
+      "name_zh": "魅惑",
+      "name_en": "Charmed",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.deafened",
+      "name_zh": "耳聋",
+      "name_en": "Deafened",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.exhaustion",
+      "name_zh": "力竭",
+      "name_en": "Exhaustion",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.frightened",
+      "name_zh": "恐慌",
+      "name_en": "Frightened",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.grappled",
+      "name_zh": "擒抱",
+      "name_en": "Grappled",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.incapacitated",
+      "name_zh": "失能",
+      "name_en": "Incapacitated",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.invisible",
+      "name_zh": "隐形",
+      "name_en": "Invisible",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.paralyzed",
+      "name_zh": "麻痹",
+      "name_en": "Paralyzed",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.petrified",
+      "name_zh": "石化",
+      "name_en": "Petrified",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.poisoned",
+      "name_zh": "中毒",
+      "name_en": "Poisoned",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.prone",
+      "name_zh": "倒地",
+      "name_en": "Prone",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.restrained",
+      "name_zh": "束缚",
+      "name_en": "Restrained",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.stunned",
+      "name_zh": "昏迷",
+      "name_en": "Stunned",
+      "summary": "",
+      "phb_page": null
+    },
+    {
+      "rule_id": "rules.dnd5e.conditions.unconscious",
+      "name_zh": "失去意识",
+      "name_en": "Unconscious",
+      "summary": "",
+      "phb_page": null
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "dnd5e",
+  "display_name": "D&D 5e",
+  "description": "Dungeons & Dragons 5th Edition 标准角色状态模板",
+  "default_state": {
+    "version": 0,
+    "campaign": "",
+    "template": "dnd5e",
+    "player": {
+      "name": "",
+      "class": "",
+      "race": "",
+      "level": 1,
+      "xp": 0,
+      "hp": {"max": 10, "current": 10, "temp": 0},
+      "abilities": {
+        "str": 10, "dex": 10, "con": 10,
+        "int": 10, "wis": 10, "cha": 10
+      },
+      "ac": 10,
+      "speed": 30,
+      "gold": 0,
+      "conditions": [],
+      "spell_slots": {},
+      "proficiency_bonus": 2,
+      "skills": {},
+      "hit_dice": {"total": "1d8", "used": 0},
+      "death_saves": {"successes": 0, "failures": 0},
+      "inspiration": false,
+      "passive_perception": 10,
+      "languages": ["通用语"],
+      "alignment": ""
+    },
+    "npcs": {},
+    "world": {},
+    "inventory": [],
+    "quests": {},
+    "combat": {
+      "active": false,
+      "round": 0,
+      "initiative": []
+    },
+    "party": [],
+    "event_log": []
+  },
+  "modifier_map": {
+    "str": "力量", "dex": "敏捷", "con": "体质",
+    "int": "智力", "wis": "感知", "cha": "魅力"
+  },
+  "skill_abilities": {
+    "运动": "str",
+    "体操": "dex", "巧手": "dex", "隐匿": "dex",
+    "奥秘": "int", "历史": "int", "调查": "int", "自然": "int", "宗教": "int",
+    "驯兽": "wis", "洞悉": "wis", "医药": "wis", "察觉": "wis", "生存": "wis",
+    "欺瞒": "cha", "威吓": "cha", "表演": "cha", "游说": "cha"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "version": "2024-srd",
+  "category": "checks",
+  "synced_at": "2026-08-25T22:05:13.607645Z",
+  "skills": [
+    {
+      "rule_id": "rules.dnd5e.checks.athletics",
+      "name_zh": "运动",
+      "name_en": "Athletics",
+      "ability": "力量",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.acrobatics",
+      "name_zh": "体操",
+      "name_en": "Acrobatics",
+      "ability": "敏捷",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.sleight_of_hand",
+      "name_zh": "巧手",
+      "name_en": "Sleight of Hand",
+      "ability": "敏捷",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.stealth",
+      "name_zh": "隐匿",
+      "name_en": "Stealth",
+      "ability": "敏捷",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.arcana",
+      "name_zh": "奥秘",
+      "name_en": "Arcana",
+      "ability": "智力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.history",
+      "name_zh": "历史",
+      "name_en": "History",
+      "ability": "智力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.investigation",
+      "name_zh": "调查",
+      "name_en": "Investigation",
+      "ability": "智力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.nature",
+      "name_zh": "自然",
+      "name_en": "Nature",
+      "ability": "智力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.religion",
+      "name_zh": "宗教",
+      "name_en": "Religion",
+      "ability": "智力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.animal_handling",
+      "name_zh": "驯兽",
+      "name_en": "Animal Handling",
+      "ability": "感知",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.insight",
+      "name_zh": "洞察",
+      "name_en": "Insight",
+      "ability": "感知",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.medicine",
+      "name_zh": "医药",
+      "name_en": "Medicine",
+      "ability": "感知",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.perception",
+      "name_zh": "察觉",
+      "name_en": "Perception",
+      "ability": "感知",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.survival",
+      "name_zh": "生存",
+      "name_en": "Survival",
+      "ability": "感知",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.deception",
+      "name_zh": "欺瞒",
+      "name_en": "Deception",
+      "ability": "魅力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.intimidation",
+      "name_zh": "威吓",
+      "name_en": "Intimidation",
+      "ability": "魅力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.performance",
+      "name_zh": "表演",
+      "name_en": "Performance",
+      "ability": "魅力",
+      "phb_page": 175
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.persuasion",
+      "name_zh": "说服",
+      "name_en": "Persuasion",
+      "ability": "魅力",
+      "phb_page": 175
+    }
+  ],
+  "saves": [
+    {
+      "rule_id": "rules.dnd5e.checks.save_str",
+      "name_zh": "力量豁免",
+      "name_en": "Strength Save",
+      "ability": "力量",
+      "phb_page": 179
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.save_dex",
+      "name_zh": "敏捷豁免",
+      "name_en": "Dexterity Save",
+      "ability": "敏捷",
+      "phb_page": 179
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.save_con",
+      "name_zh": "体质豁免",
+      "name_en": "Constitution Save",
+      "ability": "体质",
+      "phb_page": 179
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.save_int",
+      "name_zh": "智力豁免",
+      "name_en": "Intelligence Save",
+      "ability": "智力",
+      "phb_page": 179
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.save_wis",
+      "name_zh": "感知豁免",
+      "name_en": "Wisdom Save",
+      "ability": "感知",
+      "phb_page": 179
+    },
+    {
+      "rule_id": "rules.dnd5e.checks.save_cha",
+      "name_zh": "魅力豁免",
+      "name_en": "Charisma Save",
+      "ability": "魅力",
+      "phb_page": 179
+    }
+  ],
+  "skill_count": 18,
+  "save_count": 6
+}

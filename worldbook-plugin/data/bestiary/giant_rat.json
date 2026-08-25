@@ -1,0 +1,54 @@
+{
+  "id": "giant_rat",
+  "name": "巨鼠",
+  "name_en": "Giant Rat",
+  "size": "小型",
+  "type": "野兽",
+  "alignment": "无阵营",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "xp": 25,
+  "source": "SRD",
+  "stats": {
+    "hp": "5 (2d4)",
+    "hp_average": 5,
+    "ac": 12,
+    "ac_source": "天生护甲",
+    "speed": 30,
+    "speed_special": {"攀爬": 30, "游泳": 30}
+  },
+  "abilities": {
+    "str": 7,
+    "dex": 15,
+    "con": 10,
+    "int": 2,
+    "wis": 10,
+    "cha": 4
+  },
+  "senses": {
+    "黑暗视觉": 60,
+    "敏锐嗅觉与听觉": true,
+    "被动察觉": 10
+  },
+  "languages": [],
+  "proficiency_bonus": 2,
+  "special_abilities": [
+    {
+      "name": "敏锐嗅觉与听觉",
+      "desc": "巨鼠在依赖嗅觉或听觉的察觉检定上有优势。"
+    }
+  ],
+  "attacks": [
+    {
+      "name": "啃咬",
+      "type": "近战武器攻击",
+      "hit_bonus": 4,
+      "range": "5尺",
+      "damage": "1d4+2",
+      "damage_type": "穿刺",
+      "extra": "命中时 DC 10 体质豁免，失败则感染热疫"
+    }
+  ],
+  "description": "体型比普通猫大的凶恶巨鼠，常见于下水道、废墟和地牢。虽然弱小但携带疾病。",
+  "tags": ["野兽", "鼠类", "低等级", "下水道", "疾病"]
+}

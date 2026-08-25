@@ -1,0 +1,272 @@
+{
+  "version": "2024-srd",
+  "category": "classes",
+  "synced_at": "2026-08-25T22:04:57.607959Z",
+  "count": 24,
+  "classes": {
+    "barbarian": {
+      "rule_id": "rules.dnd5e.classes.barbarian",
+      "name_zh": "野蛮人",
+      "name_en": "Barbarian",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "bard": {
+      "rule_id": "rules.dnd5e.classes.bard",
+      "name_zh": "吟游诗人",
+      "name_en": "Bard",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "known",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "champion": {
+      "rule_id": "rules.dnd5e.classes.champion",
+      "name_zh": "勇士（战士子职）",
+      "name_en": "Champion",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "circle of the land": {
+      "rule_id": "rules.dnd5e.classes.circle_of_the_land",
+      "name_zh": "大地之环（德鲁伊子职）",
+      "name_en": "Circle of the Land",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "cleric": {
+      "rule_id": "rules.dnd5e.classes.cleric",
+      "name_zh": "牧师",
+      "name_en": "Cleric",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "prepared",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "college of lore": {
+      "rule_id": "rules.dnd5e.classes.college_of_lore",
+      "name_zh": "轶闻学院（吟游诗人子职）",
+      "name_en": "College of Lore",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "draconic sorcery": {
+      "rule_id": "rules.dnd5e.classes.draconic_sorcery",
+      "name_zh": "龙脉秘法（术士子职）",
+      "name_en": "Draconic Sorcery",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "druid": {
+      "rule_id": "rules.dnd5e.classes.druid",
+      "name_zh": "德鲁伊",
+      "name_en": "Druid",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "prepared",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "evoker": {
+      "rule_id": "rules.dnd5e.classes.evoker",
+      "name_zh": "塑能师（法师子职）",
+      "name_en": "Evoker",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "fiend patron": {
+      "rule_id": "rules.dnd5e.classes.fiend_patron",
+      "name_zh": "魔裔之主（邪术师子职）",
+      "name_en": "Fiend Patron",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "fighter": {
+      "rule_id": "rules.dnd5e.classes.fighter",
+      "name_zh": "战士",
+      "name_en": "Fighter",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "hunter": {
+      "rule_id": "rules.dnd5e.classes.hunter",
+      "name_zh": "猎人（游侠子职）",
+      "name_en": "Hunter",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "life domain": {
+      "rule_id": "rules.dnd5e.classes.life_domain",
+      "name_zh": "生命领域（牧师领域）",
+      "name_en": "Life Domain",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "monk": {
+      "rule_id": "rules.dnd5e.classes.monk",
+      "name_zh": "武僧",
+      "name_en": "Monk",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "oath of devotion": {
+      "rule_id": "rules.dnd5e.classes.oath_of_devotion",
+      "name_zh": "奉献之誓（圣武士誓言）",
+      "name_en": "Oath of Devotion",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "paladin": {
+      "rule_id": "rules.dnd5e.classes.paladin",
+      "name_zh": "圣武士",
+      "name_en": "Paladin",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "prepared",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "path of the berserker": {
+      "rule_id": "rules.dnd5e.classes.path_of_the_berserker",
+      "name_zh": "狂战士之道（野蛮人道途）",
+      "name_en": "Path of the Berserker",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "ranger": {
+      "rule_id": "rules.dnd5e.classes.ranger",
+      "name_zh": "游侠",
+      "name_en": "Ranger",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "prepared",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "rogue": {
+      "rule_id": "rules.dnd5e.classes.rogue",
+      "name_zh": "游荡者",
+      "name_en": "Rogue",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "sorcerer": {
+      "rule_id": "rules.dnd5e.classes.sorcerer",
+      "name_zh": "术士",
+      "name_en": "Sorcerer",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "known",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "thief": {
+      "rule_id": "rules.dnd5e.classes.thief",
+      "name_zh": "盗贼（游荡者子职）",
+      "name_en": "Thief",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "warlock": {
+      "rule_id": "rules.dnd5e.classes.warlock",
+      "name_zh": "邪术师",
+      "name_en": "Warlock",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "known",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "warrior of the open hand": {
+      "rule_id": "rules.dnd5e.classes.warrior_of_the_open_hand",
+      "name_zh": "开掌武者（武僧之道）",
+      "name_en": "Warrior of the Open Hand",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "none",
+      "spellcasting_ability": "",
+      "phb_page": null
+    },
+    "wizard": {
+      "rule_id": "rules.dnd5e.classes.wizard",
+      "name_zh": "法师",
+      "name_en": "Wizard",
+      "hit_die": "",
+      "primary_ability": "",
+      "saves": [],
+      "caster_type": "prepared",
+      "spellcasting_ability": "",
+      "phb_page": null
+    }
+  }
+}

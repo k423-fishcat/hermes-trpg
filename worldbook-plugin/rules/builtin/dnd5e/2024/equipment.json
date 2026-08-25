@@ -1,0 +1,361 @@
+{
+  "version": "2024-srd",
+  "category": "equipment",
+  "synced_at": "2026-08-25T22:05:13.608419Z",
+  "by_class": {
+    "法师": {
+      "items": [
+        {
+          "name": "法杖",
+          "type": "focus",
+          "description": "奥术法器"
+        },
+        {
+          "name": "法术书",
+          "type": "gear",
+          "description": "记录已准备法术"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "战士": {
+      "items": [
+        {
+          "name": "长剑",
+          "type": "weapon",
+          "description": "1d8 挥砍，通用"
+        },
+        {
+          "name": "盾牌",
+          "type": "armor",
+          "description": "AC +2"
+        },
+        {
+          "name": "鳞甲",
+          "type": "armor",
+          "description": "AC 14 + 敏捷调整（上限 2）"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "游荡者": {
+      "items": [
+        {
+          "name": "短剑",
+          "type": "weapon",
+          "description": "1d6 穿刺，灵巧"
+        },
+        {
+          "name": "短弓",
+          "type": "weapon",
+          "description": "1d6 穿刺，弹药 20"
+        },
+        {
+          "name": "皮甲",
+          "type": "armor",
+          "description": "AC 11 + 敏捷调整"
+        },
+        {
+          "name": "盗贼工具",
+          "type": "tool",
+          "description": "开锁与解除陷阱"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "牧师": {
+      "items": [
+        {
+          "name": "硬头锤",
+          "type": "weapon",
+          "description": "1d6 钝击"
+        },
+        {
+          "name": "盾牌",
+          "type": "armor",
+          "description": "AC +2"
+        },
+        {
+          "name": "鳞甲",
+          "type": "armor",
+          "description": "AC 14 + 敏捷调整（上限 2）"
+        },
+        {
+          "name": "圣徽",
+          "type": "focus",
+          "description": "神术法器"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "游侠": {
+      "items": [
+        {
+          "name": "长剑",
+          "type": "weapon",
+          "description": "1d8 挥砍"
+        },
+        {
+          "name": "长弓",
+          "type": "weapon",
+          "description": "1d8 穿刺，弹药 20"
+        },
+        {
+          "name": "皮甲",
+          "type": "armor",
+          "description": "AC 11 + 敏捷调整"
+        }
+      ],
+      "default_kit": [
+        "探险套件",
+        "背包",
+        "铺盖",
+        "炊具",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "吟游诗人": {
+      "items": [
+        {
+          "name": "细剑",
+          "type": "weapon",
+          "description": "1d8 穿刺，灵巧"
+        },
+        {
+          "name": "鲁特琴",
+          "type": "focus",
+          "description": "乐器法器"
+        },
+        {
+          "name": "皮甲",
+          "type": "armor",
+          "description": "AC 11 + 敏捷调整"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "武僧": {
+      "items": [
+        {
+          "name": "短棍",
+          "type": "weapon",
+          "description": "1d6 钝击，武僧武器"
+        },
+        {
+          "name": "飞镖",
+          "type": "weapon",
+          "quantity": 10,
+          "description": "1d4 穿刺，投掷（20/60）"
+        }
+      ],
+      "default_kit": [
+        "探险套件",
+        "背包",
+        "铺盖",
+        "炊具",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "德鲁伊": {
+      "items": [
+        {
+          "name": "短弯刀",
+          "type": "weapon",
+          "description": "1d6 挥砍，灵巧"
+        },
+        {
+          "name": "木盾",
+          "type": "armor",
+          "description": "AC +2"
+        },
+        {
+          "name": "皮甲",
+          "type": "armor",
+          "description": "AC 11 + 敏捷调整"
+        },
+        {
+          "name": "德鲁伊法器",
+          "type": "focus",
+          "description": "槲寄生枝"
+        }
+      ],
+      "default_kit": [
+        "探险套件",
+        "背包",
+        "铺盖",
+        "炊具",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "圣武士": {
+      "items": [
+        {
+          "name": "长剑",
+          "type": "weapon",
+          "description": "1d8 挥砍"
+        },
+        {
+          "name": "盾牌",
+          "type": "armor",
+          "description": "AC +2"
+        },
+        {
+          "name": "链甲",
+          "type": "armor",
+          "description": "AC 16，力量 13 方可穿着"
+        },
+        {
+          "name": "圣徽",
+          "type": "focus",
+          "description": "神术法器"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "术士": {
+      "items": [
+        {
+          "name": "轻弩",
+          "type": "weapon",
+          "description": "1d8 穿刺，弹药 20"
+        },
+        {
+          "name": "奥术法器",
+          "type": "focus",
+          "description": "龙晶/法珠任选"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "野蛮人": {
+      "items": [
+        {
+          "name": "巨斧",
+          "type": "weapon",
+          "description": "1d12 挥砍，重型，双手"
+        },
+        {
+          "name": "手斧",
+          "type": "weapon",
+          "quantity": 2,
+          "description": "1d6 挥砍，投掷（20/60）"
+        }
+      ],
+      "default_kit": [
+        "探险套件",
+        "背包",
+        "铺盖",
+        "炊具",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    },
+    "邪术师": {
+      "items": [
+        {
+          "name": "轻弩",
+          "type": "weapon",
+          "description": "1d8 穿刺，弹药 20"
+        },
+        {
+          "name": "奥术法器",
+          "type": "focus",
+          "description": "秘术法器"
+        },
+        {
+          "name": "皮甲",
+          "type": "armor",
+          "description": "AC 11 + 敏捷调整"
+        }
+      ],
+      "default_kit": [
+        "冒险者套件",
+        "背包",
+        "睡袋",
+        "火绒盒",
+        "10 支火把",
+        "10 日口粮",
+        "水袋",
+        "50 尺麻绳"
+      ]
+    }
+  }
+}

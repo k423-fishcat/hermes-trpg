@@ -1,0 +1,82 @@
+{
+  "name": "dnd3r",
+  "display_name": "D&D 3.5 Revised",
+  "description": "Dungeons & Dragons 3.5 Edition 角色状态模板（带 BAB / 豁免 / 技能点）",
+  "default_state": {
+    "version": 0,
+    "campaign": "",
+    "template": "dnd3r",
+    "player": {
+      "name": "",
+      "class": "",
+      "race": "",
+      "level": 1,
+      "xp": 0,
+      "alignment": "",
+      "abilities": {
+        "str": 10, "dex": 10, "con": 10,
+        "int": 10, "wis": 10, "cha": 10
+      },
+      "hp": {"max": 10, "current": 10, "temp": 0},
+      "hit_dice": {"total": "1d8", "used": 0},
+      "ac": {
+        "total": 10,
+        "touch": 10,
+        "flat_footed": 10,
+        "armor_bonus": 0,
+        "shield_bonus": 0,
+        "dex_mod": 0,
+        "natural": 0,
+        "deflection": 0,
+        "misc": 0
+      },
+      "speed": 30,
+      "initiative_mod": 0,
+      "saving_throws": {
+        "fortitude": 2,
+        "reflex": 0,
+        "will": 0
+      },
+      "skill_points_total": 0,
+      "skill_points_used": 0,
+      "skills": {},
+      "feats": [],
+      "gold": 0,
+      "conditions": [],
+      "death_saves": {"stable": false, "dying": false, "rounds": 0},
+      "languages": ["通用语"],
+      "spell_slots": {},
+      "known_spells": [],
+      "prepared_spells": []
+    },
+    "npcs": {},
+    "world": {},
+    "inventory": [],
+    "quests": {},
+    "combat": {
+      "active": false,
+      "round": 0,
+      "initiative": []
+    },
+    "party": [],
+    "event_log": []
+  },
+  "modifier_map": {
+    "str": "力量", "dex": "敏捷", "con": "体质",
+    "int": "智力", "wis": "感知", "cha": "魅力"
+  },
+  "skill_abilities": {
+    "运动": "str", "攀爬": "str", "游泳": "str", "跳远": "str",
+    "体操": "dex", "巧手": "dex", "隐匿": "dex", "查探": "wis",
+    "聆听": "wis", "侦察": "wis", "搜索": "int", "调查": "int",
+    "奥秘": "int", "历史": "int", "自然": "int", "宗教": "int",
+    "驯兽": "wis", "洞悉": "wis", "医药": "wis", "察觉": "wis",
+    "求生": "wis", "交涉": "cha", "说谎": "cha", "威吓": "cha",
+    "表演": "cha", "游说": "cha"
+  },
+  "saving_throw_abilities": {
+    "fortitude": "con",
+    "reflex": "dex",
+    "will": "wis"
+  }
+}

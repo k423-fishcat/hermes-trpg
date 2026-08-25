@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pytest_tmp/
+
+# 玩家数据（不推）
+worldbook-plugin/data/campaigns/
+worldbook-plugin/data/characters/
+worldbook-plugin/data/worlds/
+worldbook-plugin/data/bestiary/user_*
+
+# 模组源文件（WotC LMoP 等版权内容；玩家创作模组也单独管理）
+worldbook-plugin/data/adventures/
+
+# 战役存档 / 临时
+*.tmp
+*.bak
+*.swp
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 部署 / secret
+*.env
+.env

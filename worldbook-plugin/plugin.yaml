@@ -1,0 +1,6 @@
+name: worldbook
+version: 0.1.0
+description: "自动世界书注入插件，基于对话内容检索相关设定并注入上下文，支持多世界书管理。"
+author: "Hermes TRPG"
+hooks:
+  - pre_llm_call

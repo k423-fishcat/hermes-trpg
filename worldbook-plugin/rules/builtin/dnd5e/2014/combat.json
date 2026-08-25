@@ -1,0 +1,57 @@
+{
+  "version": "2014-srd",
+  "category": "combat",
+  "synced_at": "2026-08-25T21:42:36.385689Z",
+  "count": 7,
+  "rules": [
+    {
+      "rule_id": "rules.dnd5e.combat.damage_immunity",
+      "name_zh": "伤害免疫",
+      "name_en": "Damage Immunity",
+      "summary": "受该类型伤害时减为 0。优先级最高：先免疫 → 再易伤 → 最后抗性。",
+      "phb_page": 197
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.damage_vulnerability",
+      "name_zh": "伤害易伤",
+      "name_en": "Damage Vulnerability",
+      "summary": "受该类型伤害时翻倍。仅在通过免疫判定后才考虑。",
+      "phb_page": 197
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.damage_resistance",
+      "name_zh": "伤害抗性",
+      "name_en": "Damage Resistance",
+      "summary": "受该类型伤害时减半（向下取整）。在免疫/易伤判定之后。",
+      "phb_page": 197
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.critical_hit",
+      "name_zh": "暴击",
+      "name_en": "Critical Hit",
+      "summary": "攻击检定自然 20：伤害骰数量翻倍（加值不翻倍）。暴击后再应用抗/免/易伤。",
+      "phb_page": 196
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.advantage",
+      "name_zh": "优势",
+      "name_en": "Advantage",
+      "summary": "掷 d20 两次取高。多个优势不叠加。",
+      "phb_page": 173
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.disadvantage",
+      "name_zh": "劣势",
+      "name_en": "Disadvantage",
+      "summary": "掷 d20 两次取低。多个劣势不叠加。优势与劣势同时存在时抵消。",
+      "phb_page": 173
+    },
+    {
+      "rule_id": "rules.dnd5e.combat.death_saving_throw",
+      "name_zh": "死亡豁免",
+      "name_en": "Death Saving Throw",
+      "summary": "HP 归 0 时开始：每回合掷 d20。≥10=成功 1 次，自然 20=恢复 1HP 醒来，<10=失败 1 次，自然 1=计 2 次失败。3 成功=稳定，3 失败=死亡。",
+      "phb_page": 197
+    }
+  ]
+}
