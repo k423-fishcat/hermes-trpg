@@ -36,8 +36,8 @@ class TestRegistration:
         from wp.tools import register_all_tools
         ctx = FakeCtx()
         n = register_all_tools(ctx, isolated_app)
-        assert n == 78
-        assert len(ctx.tools) == 78
+        assert n == 79
+        assert len(ctx.tools) == 79
 
     def test_key_tools_present(self, isolated_app):
         from wp.tools import register_all_tools
@@ -247,3 +247,44 @@ class TestRestTools:
         assert "长休" in r
         assert "?" not in r
         assert "HP: 满" in r
+
+
+class TestConcentrationTools:
+    """专注豁免：trpg_concentration_check 工具 + /state damage 自动触发"""
+
+    def _setup_concentrating(self, isolated_app):
+        """玩家维持专注法术（体质 14 → +2）"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        isolated_app.state.update({
+            "player.abilities": {"str": 10, "dex": 10, "con": 14, "int": 16, "wis": 12, "cha": 10},
+            "player.hp": {"max": 20, "current": 20, "temp": 0},
+            "player.concentration": "魔法飞弹",
+        }, reason="test_setup")
+        return ctx
+
+    def test_concentration_check_no_concentration(self, isolated_app):
+        """无专注时返回无需豁免"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_concentration_check"]["handler"]({"damage": 10})
+        assert "无需豁免" in r
+
+    def test_concentration_check_with_concentration(self, isolated_app):
+        """有专注时返回豁免结果（DC = max(10, damage//2)）"""
+        ctx = self._setup_concentrating(isolated_app)
+        r = ctx.tools["trpg_concentration_check"]["handler"]({"damage": 30})
+        assert "专注豁免" in r
+        assert "DC 15" in r  # max(10, 30//2) = 15
+        assert "体质+2" in r
+
+    def test_state_damage_auto_triggers_concentration(self, isolated_app):
+        """/state damage 受伤时自动触发专注豁免"""
+        ctx = self._setup_concentrating(isolated_app)
+        from wp.state_cmd import handle_state_command
+        r = handle_state_command("damage 10 哥布林攻击")
+        assert "受到 10 点伤害" in r
+        assert "专注豁免" in r
+        assert "DC 10" in r  # max(10, 10//2) = 10

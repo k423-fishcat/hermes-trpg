@@ -95,6 +95,15 @@ def handle_state_command(raw_args: str) -> str:
             msg = f"受到 {amount} 点伤害（{source}）\nHP: {new_hp}/{hp_max}"
             if new_hp <= 0:
                 msg += "\n⚠️ 生命值归零！"
+            # 专注豁免：受伤自动触发（D&D 5e PHB p.203）
+            try:
+                conc = get_app().spells.concentration_check(amount)
+                if conc.get("check_needed"):
+                    msg += (f"\n🎯 专注豁免（DC {conc['dc']}）: "
+                            f"d20={conc['roll']} + 体质{conc['modifier']:+d} = {conc['total']}")
+                    msg += "\n   " + ("✅ 专注保持" if conc["concentration_maintained"] else "❌ 专注中断！")
+            except Exception:
+                pass
             return msg
 
         elif sub in ("heal", "治疗"):

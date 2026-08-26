@@ -132,6 +132,30 @@ def register(reg: ToolRegistry, spell_mgr):
         return "\n".join(lines)
 
     @reg.tool(
+        name="trpg_concentration_check",
+        description="专注豁免检定。玩家受到伤害时进行体质豁免（DC = max(10, 伤害/2)），失败则失去专注。受伤后应调用此工具。",
+        schema={
+            "name": "trpg_concentration_check",
+            "parameters": {
+                "type": "object",
+                "properties": {"damage": {"type": "integer", "description": "受到的伤害数值"}},
+                "required": ["damage"],
+            },
+        },
+        emoji="🎯",
+    )
+    def conc_check(args):
+        r = spell_mgr.concentration_check(args.get("damage", 0))
+        if not r.get("check_needed"):
+            return "🎯 当前没有维持的专注法术，无需豁免"
+        lines = [
+            f"🎯 专注豁免（DC {r['dc']}）",
+            f"  掷骰: d20={r['roll']} + 体质{r['modifier']:+d} = {r['total']}",
+            f"  结果: {'✅ 专注保持' if r['concentration_maintained'] else '❌ 专注中断'}",
+        ]
+        return "\n".join(lines)
+
+    @reg.tool(
         name="trpg_concentration_end",
         description="手动结束当前专注法术。",
         schema={
