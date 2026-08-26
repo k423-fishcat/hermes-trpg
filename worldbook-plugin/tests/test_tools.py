@@ -203,3 +203,47 @@ class TestHandlerCalls:
         register_all_tools(ctx, isolated_app)
         r = ctx.tools["trpg_worldbook_search"]["handler"]({"query": "测试"})
         assert isinstance(r, str)
+
+
+class TestRestTools:
+    """休息工具层修复：rest_status 方法名 + 短休/长休字段名"""
+
+    def _setup_player(self, isolated_app):
+        """给玩家设置受伤状态 + 命中骰 + 法术位"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        # 受伤：HP 10/20
+        isolated_app.state.update({
+            "player.hp": {"max": 20, "current": 10, "temp": 0},
+            "player.hit_dice": {"total": "2d8", "used": 0},
+            "player.spell_slots": {"1": 1, "2": 0},
+            "player.spell_slots_max": {"1": 4, "2": 2},
+        }, reason="test_setup")
+        return ctx
+
+    def test_rest_status_no_crash(self, isolated_app):
+        """trpg_rest_status 不再因 status() 不存在而报错"""
+        ctx = self._setup_player(isolated_app)
+        r = ctx.tools["trpg_rest_status"]["handler"]({})
+        assert isinstance(r, str)
+        assert "休息状态" in r
+        assert "HP" in r
+
+    def test_short_rest_shows_healed(self, isolated_app):
+        """短休显示实际恢复数值（healed/hp_after/hp_max）"""
+        ctx = self._setup_player(isolated_app)
+        r = ctx.tools["trpg_short_rest"]["handler"]({"hit_dice_count": 1})
+        assert isinstance(r, str)
+        assert "短休" in r
+        assert "?" not in r  # 不再显示 ?/?
+        assert "当前 HP" in r
+
+    def test_long_rest_shows_hp(self, isolated_app):
+        """长休显示 HP 满（hp_after/hp_max）"""
+        ctx = self._setup_player(isolated_app)
+        r = ctx.tools["trpg_long_rest"]["handler"]({})
+        assert isinstance(r, str)
+        assert "长休" in r
+        assert "?" not in r
+        assert "HP: 满" in r

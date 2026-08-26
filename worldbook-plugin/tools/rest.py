@@ -28,11 +28,13 @@ def register(reg: ToolRegistry, rest_mgr):
             return f"❌ 短休失败: {r.get('error', '未知错误')}"
         lines = [
             "😌 短休（1 小时）",
-            f"  恢复 HP: +{r.get('hp_restored', 0)}",
-            f"  当前 HP: {r.get('current_hp', '?')}/{r.get('max_hp', '?')}",
+            f"  恢复 HP: +{r.get('healed', 0)}",
+            f"  当前 HP: {r.get('hp_after', '?')}/{r.get('hp_max', '?')}",
         ]
         if r.get("hit_dice_used"):
             lines.append(f"  使用命中骰: {r['hit_dice_used']} 个")
+        if r.get("hit_dice_remaining") is not None:
+            lines.append(f"  剩余命中骰: {r['hit_dice_remaining']} 个")
         return "\n".join(lines)
 
     @reg.tool(
@@ -45,11 +47,16 @@ def register(reg: ToolRegistry, rest_mgr):
         r = rest_mgr.long_rest()
         if not r.get("success"):
             return f"❌ 长休失败: {r.get('error', '未知错误')}"
-        return (
-            "😴 长休（8 小时）\n"
-            f"  HP: 满（{r.get('current_hp', '?')}/{r.get('max_hp', '?')}）\n"
-            "  命中骰 / 法术位 / 职业资源 全部恢复"
-        )
+        lines = [
+            "😴 长休（8 小时）",
+            f"  HP: 满（{r.get('hp_after', '?')}/{r.get('hp_max', '?')}）",
+            "  命中骰 / 法术位 / 职业资源 全部恢复",
+        ]
+        if r.get("hit_dice_restored"):
+            lines.append(f"  恢复命中骰: {r['hit_dice_restored']} 个")
+        if r.get("spell_slots_restored"):
+            lines.append(f"  恢复法术位: {r['spell_slots_restored']}")
+        return "\n".join(lines)
 
     @reg.tool(
         name="trpg_rest_status",
@@ -58,5 +65,20 @@ def register(reg: ToolRegistry, rest_mgr):
         emoji="📊",
     )
     def rest_status(args):
-        s = rest_mgr.status()
-        return s
+        s = rest_mgr.rest_status()
+        lines = [
+            "📊 休息状态",
+            f"  HP: {s.get('hp', '?')}（临时 {s.get('temp_hp', 0)}）",
+        ]
+        hd = s.get("hit_dice", {})
+        if hd:
+            lines.append(f"  命中骰: {hd.get('available', '?')}/{hd.get('total', '?')} 可用（已用 {hd.get('used', 0)}）")
+        slots = s.get("spell_slots", {})
+        if isinstance(slots, dict) and slots:
+            parts = []
+            for lv, v in slots.items():
+                parts.append(f"{lv}环 {v.get('current', '?')}/{v.get('max', '?')}")
+            lines.append(f"  法术位: {'，'.join(parts)}")
+        elif isinstance(slots, str):
+            lines.append(f"  法术位: {slots}")
+        return "\n".join(lines)
