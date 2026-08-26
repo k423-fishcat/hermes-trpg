@@ -1,23 +1,25 @@
 """tools/ 包 — 替代 v2.5 之前的 tools.py（3514 行单文件）
 
-13 个子模块 + ToolRegistry 装饰器模式。每个子文件 100-400 行，
+15 个子模块 + ToolRegistry 装饰器模式。每个子文件 100-400 行，
 加新工具只需 @reg.tool() 一行装饰器 + handler 函数。
 
 子模块：
 - registry.py        ToolRegistry + @tool 装饰器
 - state_tools.py     2 个：state get / state update
-- narrative.py       18 个：chronicle / quest / npc / time
+- narrative.py       21 个：chronicle / quest / npc / time
 - bestiary.py        5 个：怪物图鉴
 - combat.py          9 个：战斗追踪
 - characters.py      5 个：角色卡 + XP/升级
 - inventory.py       8 个：背包 / 装备 / 金币
-- spells.py          6 个：法术
+- spells.py          7 个：法术 + 专注
 - sessions.py        6 个：场次 + 选择
 - check.py           1 个：D&D 5e 检定
 - snapshots.py       3 个：快照与回滚
 - rest.py            3 个：休息
 - modules.py         4 个：模组管理
 - encounters.py      4 个：遭遇管理
+- worldbook.py       1 个：世界书搜索
+- rules.py           3 个：规则书查询
 
 外部调用（__init__.py）：
     from tools import register_all_tools
@@ -28,7 +30,7 @@ from .registry import ToolRegistry
 
 
 def register_all_tools(ctx, app) -> int:
-    """注册所有 78 个 TRPG 工具到 ctx。
+    """注册所有 82 个 TRPG 工具到 ctx。
 
     Args:
         ctx: PluginContext（提供 ctx.register_tool）
@@ -83,6 +85,9 @@ def register_all_tools(ctx, app) -> int:
 
     from . import worldbook
     worldbook.register(reg, app.worldbook_store)
+
+    from . import rules
+    rules.register(reg, app.rules)
 
     # 一次性推给 ctx
     n = reg.register_all()

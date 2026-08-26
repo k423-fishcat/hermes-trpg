@@ -36,8 +36,8 @@ class TestRegistration:
         from wp.tools import register_all_tools
         ctx = FakeCtx()
         n = register_all_tools(ctx, isolated_app)
-        assert n == 79
-        assert len(ctx.tools) == 79
+        assert n == 82
+        assert len(ctx.tools) == 82
 
     def test_key_tools_present(self, isolated_app):
         from wp.tools import register_all_tools
@@ -288,3 +288,51 @@ class TestConcentrationTools:
         assert "受到 10 点伤害" in r
         assert "专注豁免" in r
         assert "DC 10" in r  # max(10, 10//2) = 10
+
+
+class TestRulesQueryTools:
+    """规则书查询工具：trpg_rules_search / trpg_rules_get / trpg_rules_categories"""
+
+    def test_rules_search_finds_creature(self, isolated_app):
+        """搜索怪物（中文名）"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_rules_search"]["handler"]({"query": "哥布林"})
+        assert isinstance(r, str)
+        assert "哥布林" in r or "goblin" in r
+
+    def test_rules_search_english(self, isolated_app):
+        """搜索怪物（英文名）"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_rules_search"]["handler"]({"query": "goblin"})
+        assert isinstance(r, str)
+        assert "哥布林" in r or "goblin" in r
+
+    def test_rules_get_creature(self, isolated_app):
+        """精确获取怪物数据"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_rules_get"]["handler"]({"category": "creatures", "name": "哥布林"})
+        assert isinstance(r, str)
+        assert "哥布林" in r
+
+    def test_rules_get_missing(self, isolated_app):
+        """不存在的规则返回错误"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_rules_get"]["handler"]({"category": "creatures", "name": "不存在的怪物XYZ"})
+        assert "未找到" in r
+
+    def test_rules_categories(self, isolated_app):
+        """列出分类"""
+        from wp.tools import register_all_tools
+        ctx = FakeCtx()
+        register_all_tools(ctx, isolated_app)
+        r = ctx.tools["trpg_rules_categories"]["handler"]({})
+        assert isinstance(r, str)
+        assert "分类" in r

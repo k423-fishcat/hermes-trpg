@@ -108,7 +108,8 @@ class AppContext:
         # === 规则书快照（独立挂载，不依赖 data_dir）===
         self.rules = RulesBook(rules_dir)
         try:
-            self.rules.load("dnd5e")
+            self.rules.load("dnd5e")  # 2024 SRD
+            self.rules.load("dnd5e", edition="2014")  # 2014 SRD（含 creatures）
             logger.info("[app_context] 规则书快照 dnd5e 已加载: %s", self.rules.stats())
         except Exception as e:
             logger.warning(f"[app_context] 规则书快照加载失败: {e}")

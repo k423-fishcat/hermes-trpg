@@ -346,6 +346,99 @@ def normalize_creature_v2(cr: dict) -> dict:
     })
 
 
+def normalize_creature_v1(cr: dict) -> dict:
+    """v1 monster → 本地 schema
+
+    Open5e v1 monsters 端点（2014 SRD，实测 322 条）：
+    - abilities 是顶层 int 字段（strength/dexterity/...）
+    - speed 是 dict（walk/swim/fly...）
+    - 抗/免/易伤是逗号分隔字符串
+    - challenge_rating 是字符串（"1/4"、"10"）
+    """
+    raw_name = cr.get("name", "")
+    name_slug = _slugify(raw_name)
+
+    # abilities: v1 顶层 int 字段
+    abilities = {}
+    for k in ("strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"):
+        v = cr.get(k)
+        if v is not None:
+            abilities[k[:3]] = int(v)
+
+    # 抗/免/易伤：逗号分隔字符串 → list
+    def _split(s):
+        if not s:
+            return []
+        return [x.strip() for x in s.split(",") if x.strip()]
+
+    # CR: 字符串转 float（"1/4" → 0.25）
+    cr_val = _parse_cr(cr.get("challenge_rating") or cr.get("cr") or 0)
+
+    # type: v1 的 type 是 "Large Aberration"（size + type 合并）
+    type_info = cr.get("type", "")
+
+    # actions: v1 有 attack_bonus/damage_dice/damage_bonus
+    attacks = []
+    for atk in cr.get("actions", []) or []:
+        if not isinstance(atk, dict):
+            continue
+        dmg_die = atk.get("damage_dice", "")
+        dmg_bonus = atk.get("damage_bonus", 0)
+        dmg_str = dmg_die
+        if dmg_bonus:
+            dmg_str += f"{dmg_bonus:+d}"
+        attacks.append({
+            "name": atk.get("name", "攻击"),
+            "hit_bonus": atk.get("attack_bonus", 0),
+            "damage": dmg_str,
+            "damage_type": "",
+        })
+
+    return _translate_zh({
+        "rule_id": f"rules.dnd5e.creatures.{name_slug}",
+        "name_zh": raw_name,
+        "name_en": raw_name,
+        "cr": cr_val,
+        "type": type_info,
+        "ac": cr.get("armor_class", 10),
+        "hp_average": cr.get("hit_points", 0),
+        "hp_formula": cr.get("hit_dice", ""),
+        "speed": _extract_speed(cr.get("speed", {})),
+        "abilities": abilities,
+        "damage_resistances": _split(cr.get("damage_resistances", "")),
+        "damage_immunities": _split(cr.get("damage_immunities", "")),
+        "damage_vulnerabilities": _split(cr.get("damage_vulnerabilities", "")),
+        "actions_summary": [
+            {
+                "name": a.get("name", ""),
+                "action_type": "ACTION",
+                "desc": _truncate(a.get("desc", ""), 200),
+            }
+            for a in cr.get("actions", []) or []
+            if isinstance(a, dict)
+        ][:8],
+        "summary": _truncate(cr.get("desc", ""), 300),
+        "phb_page": cr.get("page_no") or None,
+    })
+
+
+def _parse_cr(cr) -> float:
+    """解析 CR 字符串/数字 → float（"1/4" → 0.25）"""
+    if isinstance(cr, (int, float)):
+        return float(cr)
+    s = str(cr).strip()
+    if "/" in s:
+        try:
+            num, den = s.split("/")
+            return float(num) / float(den)
+        except (ValueError, ZeroDivisionError):
+            return 0.0
+    try:
+        return float(s)
+    except ValueError:
+        return 0.0
+
+
 def _extract_dmg_types(items) -> list[str]:
     """从 v2 的 list[dict|str] 提取伤害类型字符串"""
     result = []
@@ -970,9 +1063,10 @@ def sync_creatures(edition: str, rate: float, out_dir: Path) -> int:
         }
         items = paginate(url, params, rate, normalize_creature_v2)
     else:
-        # 2014 v1 没 creatures 端点，跳过
-        print("  ! 2014 SRD v1 无 creatures 端点，跳过")
-        return 0
+        # 2014 v1 monsters 端点（实测 322 条，SRD 过滤）
+        url = f"{OPEN5E_V1}/monsters/"
+        params = {"document__slug": "wotc-srd", "limit": 100}
+        items = paginate(url, params, rate, normalize_creature_v1)
 
     _write_json(out_dir / "creatures.json", {
         "version": f"{edition}-srd",
