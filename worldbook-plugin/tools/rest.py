@@ -55,7 +55,12 @@ def register(reg: ToolRegistry, rest_mgr):
         if r.get("hit_dice_restored"):
             lines.append(f"  恢复命中骰: {r['hit_dice_restored']} 个")
         if r.get("spell_slots_restored"):
-            lines.append(f"  恢复法术位: {r['spell_slots_restored']}")
+            slots = r["spell_slots_restored"]
+            if isinstance(slots, dict):
+                parts = [f"{lv}环 +{v}" for lv, v in sorted(slots.items(), key=lambda x: int(x[0]) if str(x[0]).isdigit() else 0)]
+                lines.append(f"  恢复法术位: {'，'.join(parts)}")
+            else:
+                lines.append(f"  恢复法术位: {slots}")
         return "\n".join(lines)
 
     @reg.tool(
