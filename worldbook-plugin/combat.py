@@ -645,7 +645,7 @@ class CombatTracker:
         这是轻量版转换，只提取战斗需要的字段。
         """
         try:
-            from .bestiary_import_compat import convert_creature_to_bestiary
+            from .bestiary_import import convert_creature_to_bestiary
             return convert_creature_to_bestiary(srd_data)
         except Exception:
             # 回退：手动提取关键字段

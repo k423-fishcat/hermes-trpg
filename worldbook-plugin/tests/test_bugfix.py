@@ -143,3 +143,40 @@ class TestClockBoundary:
         assert info["day"] == 30    # 截断到 30
         assert info["hour"] == 23
         assert info["minute"] == 59
+
+
+class TestBestiaryImportFromSrd:
+    """import_from_srd 修复：add_monster 支持 overwrite + monster_id 用最终 id"""
+
+    def _make_bestiary(self, tmp_path):
+        from wp.bestiary import Bestiary
+        return Bestiary(tmp_path / "bestiary")
+
+    def _srd(self):
+        return {
+            "name": "Goblin", "size": "Small", "type": "humanoid",
+            "armor_class": 15, "hit_points": 7,
+            "strength": 8, "dexterity": 14, "constitution": 10,
+            "intelligence": 10, "wisdom": 8, "charisma": 8,
+        }
+
+    def test_import_success(self, tmp_path):
+        b = self._make_bestiary(tmp_path)
+        r = b.import_from_srd(self._srd())
+        assert r["success"] is True
+        assert r["id"] == "goblin"
+        assert r["monster_id"] == "goblin"  # 用 add_monster 填充后的最终 id
+
+    def test_duplicate_no_overwrite(self, tmp_path):
+        b = self._make_bestiary(tmp_path)
+        b.import_from_srd(self._srd())
+        r = b.import_from_srd(self._srd())
+        assert r["success"] is False
+        assert "已存在" in r["error"]
+
+    def test_duplicate_with_overwrite(self, tmp_path):
+        b = self._make_bestiary(tmp_path)
+        b.import_from_srd(self._srd())
+        r = b.import_from_srd(self._srd(), overwrite=True)
+        assert r["success"] is True
+        assert r["id"] == "goblin"
