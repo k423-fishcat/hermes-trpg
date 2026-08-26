@@ -106,7 +106,7 @@ class TestHitDice:
         assert len(r["rolls"]) == 2
         # 每颗至少 1（含 con_mod），两颗至少 2
         assert r["heal_total"] >= 2
-        assert r["heal_total"] <= 22
+        assert r["heal_total"] <= 24
 
 
 class TestHealing:

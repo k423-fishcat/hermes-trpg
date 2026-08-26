@@ -79,6 +79,21 @@ def register(reg: ToolRegistry, chron, quests, npcs, clock):
         return chron.chapter_review(args.get("chapter_id", "") or None)
 
     @reg.tool(
+        name="trpg_chapter_list",
+        description="列出所有章节。",
+        schema={"name": "trpg_chapter_list", "parameters": _NO_PARAMS},
+        emoji="📚",
+    )
+    def list_chapters(args):
+        chs = chron.list_chapters()
+        if not chs:
+            return "（还没有章节）"
+        lines = [f"📚 章节列表（共 {len(chs)} 个）", ""]
+        for ch in chs:
+            lines.append(f"  • [{ch.get('id', '?')}] {ch.get('title', '?')}")
+        return "\n".join(lines)
+
+    @reg.tool(
         name="trpg_milestone_add",
         description="添加章节里程碑（阶段目标/关键节点）。开新章节时设定好本章的几个关键目标。",
         schema={
@@ -220,6 +235,78 @@ def register(reg: ToolRegistry, chron, quests, npcs, clock):
         return "\n".join(lines)
 
     @reg.tool(
+        name="trpg_quest_add",
+        description=(
+            "创建新任务（任务不存在时）。DM 给玩家派任务时调用。"
+            "quest_id 必须唯一（建议用 main_01 / side_tavern_01 这种命名）。"
+            "steps 是 JSON 数组字符串，格式 [{\"id\": \"step1\", \"title\": \"找到线索\", \"description\": \"向酒保打听\"}]；"
+            "不传则任务无步骤，可直接 start_quest 推进。"
+            "triggers 也是 JSON 数组字符串，类型支持 flag / quest_completed / item_in_inventory / npc_attitude。"
+        ),
+        schema={
+            "name": "trpg_quest_add",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "quest_id": {"type": "string", "description": "任务 ID（唯一标识，例 main_01 / side_tavern_01）"},
+                    "title": {"type": "string", "description": "任务标题"},
+                    "description": {"type": "string", "description": "任务详细描述", "default": ""},
+                    "quest_type": {"type": "string", "description": "类型：main / side / hidden / personal", "default": "side"},
+                    "giver": {"type": "string", "description": "任务发布人 NPC 名", "default": ""},
+                    "rewards": {"type": "string", "description": "奖励描述（文字即可）", "default": ""},
+                    "steps": {"type": "string", "description": "步骤 JSON 数组字符串，例 '[{\"id\":\"s1\",\"title\":\"找线索\"}]'", "default": ""},
+                    "prerequisites": {"type": "string", "description": "前置任务 ID 列表 JSON 数组字符串", "default": ""},
+                    "triggers": {"type": "string", "description": "触发条件 JSON 数组字符串（隐藏任务用）", "default": ""},
+                },
+                "required": ["quest_id", "title"],
+            },
+        },
+        emoji="➕",
+    )
+    def add_quest_tool(args):
+        import json
+        qid = args.get("quest_id", "").strip()
+        title = args.get("title", "").strip()
+        if not qid or not title:
+            return "❌ quest_id 和 title 必填"
+
+        def _parse_list(raw, label):
+            if not raw:
+                return None
+            try:
+                data = json.loads(raw)
+                if not isinstance(data, list):
+                    return f"❌ {label} 必须是 JSON 数组"
+                return data
+            except Exception as e:
+                return f"❌ {label} JSON 解析失败: {e}"
+
+        steps = _parse_list(args.get("steps", ""), "steps")
+        if isinstance(steps, str):
+            return steps
+        prerequisites = _parse_list(args.get("prerequisites", ""), "prerequisites")
+        if isinstance(prerequisites, str):
+            return prerequisites
+        triggers = _parse_list(args.get("triggers", ""), "triggers")
+        if isinstance(triggers, str):
+            return triggers
+
+        r = quests.add_quest(
+            quest_id=qid,
+            title=title,
+            description=args.get("description", ""),
+            quest_type=args.get("quest_type", "side"),
+            giver=args.get("giver", ""),
+            rewards=args.get("rewards", ""),
+            steps=steps,
+            prerequisites=prerequisites,
+            triggers=triggers,
+        )
+        if not r.get("success"):
+            return f"❌ {r.get('error', '创建失败')}"
+        return f"➕ 任务已创建: [{r.get('quest_id', qid)}] {r.get('title', title)}（类型: {args.get('quest_type', 'side')}）"
+
+    @reg.tool(
         name="trpg_quest_advance",
         description="推进任务到下一步。玩家完成当前步骤时调用。",
         schema={
@@ -314,6 +401,22 @@ def register(reg: ToolRegistry, chron, quests, npcs, clock):
         if not r.get("success"):
             return f"❌ {r.get('error', '记录失败')}"
         return f"🗣 已记录: {args.get('npc_name', '')} - {args.get('summary', '')[:50]}"
+
+    @reg.tool(
+        name="trpg_npc_list",
+        description="列出所有 NPC（名字、位置、存活状态、态度）。",
+        schema={"name": "trpg_npc_list", "parameters": _NO_PARAMS},
+        emoji="👥",
+    )
+    def list_npcs(args):
+        ns = npcs.list_npcs()
+        if not ns:
+            return "（还没有 NPC）"
+        lines = [f"👥 NPC 列表（共 {len(ns)} 个）", ""]
+        for n in ns:
+            status = "存活" if n.get("alive", True) else "死亡"
+            lines.append(f"  • {n.get('name', '?')} | {status} | 位置:{n.get('location', '?')} | 态度:{n.get('attitude', 0):+d}")
+        return "\n".join(lines)
 
     @reg.tool(
         name="trpg_npc_info",

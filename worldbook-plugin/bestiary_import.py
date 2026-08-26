@@ -13,11 +13,39 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 
+def _load_creature_name_map() -> Dict[str, str]:
+    """加载 rules/zh_mapping.json 中的怪物中文名映射"""
+    mapping_path = Path(__file__).resolve().parent / "rules" / "zh_mapping.json"
+    try:
+        with open(mapping_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("creatures", {})
+    except Exception:
+        return {}
+
+
+# 懒加载：只在需要时读一次
+_CREATURE_NAME_MAP: Dict[str, str] = {}
+
+
+def _get_creature_name(key_or_name: str) -> str:
+    """根据 SRD key 或英文名取中文名，找不到返回空字符串"""
+    global _CREATURE_NAME_MAP
+    if not _CREATURE_NAME_MAP:
+        _CREATURE_NAME_MAP = _load_creature_name_map()
+    # key 形如 srd-2024_goblin，取末段
+    slug = key_or_name.split("_")[-1] if "_" in key_or_name else key_or_name
+    return _CREATURE_NAME_MAP.get(slug, "")
+
+
 def convert_creature_to_bestiary(src: dict) -> dict:
     """把 dnd-rules 的结构化怪物数据转成 bestiary 格式"""
 
     name = src.get("name", "")
     key = src.get("key", "")
+
+    # 尝试中文名映射
+    cn_name = _get_creature_name(key) or _get_creature_name(name)
     size_obj = src.get("size", {})
     type_obj = src.get("type", {})
     speed_obj = src.get("speed", {})
@@ -221,10 +249,21 @@ def convert_creature_to_bestiary(src: dict) -> dict:
     if src.get("alignment") and "evil" in src["alignment"].lower():
         tags.append("邪恶")
 
+    # 若映射到中文，则中文为主、英文为 name_en；并保留原英文名作为别名便于搜索
+    aliases = []
+    if cn_name and cn_name != name:
+        display_name = cn_name
+        name_en = name
+        aliases.append(name.lower())
+    else:
+        display_name = name
+        name_en = name
+
     result = {
         "id": monster_id,
-        "name": name,
-        "name_en": name,  # SRD 怪物名就是英文
+        "name": display_name,
+        "name_en": name_en,
+        "aliases": aliases,
         "size": size_obj.get("name", "") if isinstance(size_obj, dict) else str(size_obj),
         "type": type_obj.get("name", "") if isinstance(type_obj, dict) else str(type_obj),
         "alignment": src.get("alignment", ""),

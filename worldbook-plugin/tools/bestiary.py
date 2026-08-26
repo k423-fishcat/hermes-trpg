@@ -120,7 +120,7 @@ def register(reg: ToolRegistry, bestiary):
             srd_data = json.loads(args.get("srd_data_json", ""))
         except Exception as e:
             return f"❌ JSON 解析失败: {e}"
-        from ..bestiary_import import convert_creature_to_bestiary
+        from ..bestiary_import_compat import convert_creature_to_bestiary
         template = convert_creature_to_bestiary(srd_data)
         if not template:
             return "❌ 无法转换为 bestiary 格式"

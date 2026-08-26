@@ -74,6 +74,7 @@ MONSTER_TEMPLATE = {
     "equipment": [],           # 携带物品
     "description": "",         # 风味描述
     "tags": [],                # 标签，用于搜索分类
+    "aliases": [],             # 别名（英文原名等），用于中文搜索
 }
 
 
@@ -214,6 +215,10 @@ class Bestiary:
                 score += 10
             if query_lower in name_en:
                 score += 8
+            for alias in m.get("aliases", []):
+                if query_lower in str(alias).lower():
+                    score += 6
+                    break
             if query_lower in mid:
                 score += 5
 
@@ -355,10 +360,7 @@ class Bestiary:
         Returns:
             导入结果
         """
-        try:
-            from .bestiary_import import convert_creature_to_bestiary
-        except ImportError:
-            from bestiary_import import convert_creature_to_bestiary
+        from .bestiary_import_compat import convert_creature_to_bestiary
 
         converted = convert_creature_to_bestiary(srd_data)
         monster_id = converted["id"]

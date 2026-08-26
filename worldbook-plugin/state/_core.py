@@ -42,6 +42,29 @@ def list_templates(state_mgr) -> List[Dict]:
     return templates
 
 
+def _migrate_player_abilities(state: dict) -> None:
+    """把 player.ability_scores（旧大写键）统一迁移到 player.abilities（小写键）"""
+    player = state.get("player")
+    if not isinstance(player, dict):
+        return
+    old = player.get("ability_scores")
+    if not isinstance(old, dict):
+        return
+    mapping = {
+        "STR": "str", "DEX": "dex", "CON": "con",
+        "INT": "int", "WIS": "wis", "CHA": "cha",
+    }
+    migrated = {mapping.get(k, k): v for k, v in old.items()}
+    # ability_scores 是旧数据源，视为可信值覆盖默认模板生成的 abilities
+    current = player.get("abilities") or {}
+    if isinstance(current, dict):
+        merged = {**current, **migrated}
+    else:
+        merged = migrated
+    player["abilities"] = merged
+    del player["ability_scores"]
+
+
 def load(state_mgr) -> dict:
     """加载当前战役状态（带 schema 校验 + 自动补字段）"""
     if state_mgr._state is not None:
@@ -58,6 +81,7 @@ def load(state_mgr) -> dict:
             with open(state_mgr.state_file, "r", encoding="utf-8") as f:
                 raw_state = json.load(f)
             state_mgr._state, warnings = validate_and_fill(raw_state, default_state)
+            _migrate_player_abilities(state_mgr._state)
             if warnings:
                 import logging
                 logger = logging.getLogger(__name__)
@@ -84,6 +108,7 @@ def load(state_mgr) -> dict:
                 pass
 
     state_mgr._state = copy.deepcopy(default_state)
+    _migrate_player_abilities(state_mgr._state)
     state_mgr._state["campaign"] = state_mgr.campaign_name
     state_mgr._state["template"] = state_mgr.template_name
     state_mgr._state["version"] = 0
@@ -219,6 +244,82 @@ def undo(state_mgr, steps: int = 1) -> Dict[str, Any]:
     }
 
 
+def _format_status_summary(state_mgr) -> str:
+    """格式化状态总览（适配不同模板）"""
+    s = load(state_mgr)
+    tmpl = s.get("template", "dnd5e")
+
+    lines = [
+        f"📊 角色状态（{s.get('campaign', '未命名')}）",
+        "=" * 30,
+    ]
+
+    # DnD 风格
+    if tmpl == "dnd5e":
+        p = s.get("player", {})
+        hp = p.get("hp", {})
+        conds = p.get("conditions", [])
+        cond_text = ", ".join(c.get("display_name", c.get("name", "")) for c in conds) if conds else "无"
+        inv = s.get("inventory", [])
+        inv_items = ", ".join(f"{i['name']}x{i.get('qty', 1)}" for i in inv[:8])
+        if len(inv) > 8:
+            inv_items += f" 等{len(inv)}件"
+        quests = s.get("quests", {})
+        active = [n for n, q in quests.items() if q.get("status") in ("进行中", "in_progress", "active")]
+
+        lines += [
+            f"角色: {p.get('name', '未命名')} | {p.get('race', '')} {p.get('class', '')} Lv.{p.get('level', 1)}",
+            f"HP: {hp.get('current', 0)}/{hp.get('max', 0)}" + (f" (+{hp.get('temp', 0)} 临时)" if hp.get("temp") else ""),
+            f"AC: {p.get('ac', 10)} | 速度: {p.get('speed', 30)}尺",
+            f"金币: {p.get('gold', 0)} GP",
+            f"状态: {cond_text}",
+            "",
+            "💪 属性:",
+            f"  STR {p['abilities'].get('str', 10):>2}  DEX {p['abilities'].get('dex', 10):>2}  CON {p['abilities'].get('con', 10):>2}",
+            f"  INT {p['abilities'].get('int', 10):>2}  WIS {p['abilities'].get('wis', 10):>2}  CHA {p['abilities'].get('cha', 10):>2}",
+            f"  熟练加值: +{p.get('proficiency_bonus', 2)}",
+            "",
+            "🎒 背包:",
+            f"  {inv_items or '(空)'}",
+            "",
+            f"📜 任务: {len(active)} 个进行中",
+        ]
+        for q in active[:5]:
+            qd = quests[q]
+            step = qd.get("current_step", "")
+            lines.append(f"  - {q}: {step}")
+
+    # COC 风格
+    elif tmpl == "coc7e":
+        inv = s.get("investigator", {})
+        chars = s.get("characteristics", {})
+        der = s.get("derived", {})
+        conds = s.get("conditions", [])
+        cond_text = ", ".join(c.get("display_name", c.get("name", "")) for c in conds) if conds else "无"
+
+        lines += [
+            f"调查员: {inv.get('name', '未命名')}",
+            f"职业: {inv.get('occupation', '')} | 年龄: {inv.get('age', '?')}",
+            f"HP: {der.get('hp_current', 0)}/{der.get('hp_max', 0)}",
+            f"理智: {der.get('san_current', 0)}/{der.get('san_max', 0)}",
+            f"魔法值: {der.get('mp_current', 0)}/{der.get('mp_max', 0)}",
+            f"状态: {cond_text}",
+            "",
+            "📐 特征值:",
+            f"  STR {chars.get('str', '?')}  CON {chars.get('con', '?')}  SIZ {chars.get('siz', '?')}",
+            f"  DEX {chars.get('dex', '?')}  APP {chars.get('app', '?')}  INT {chars.get('int', '?')}",
+            f"  POW {chars.get('pow', '?')}  EDU {chars.get('edu', '?')}  LUK {chars.get('luk', '?')}",
+        ]
+
+    # 通用
+    else:
+        lines.append("（自定义模板，用 /state get 查看详细字段）")
+
+    lines += ["", f"版本: v{s.get('version', 0)} | 模板: {tmpl} | 战役: {s.get('campaign', '')}"]
+    return "\n".join(lines)
+
+
 __all__ = [
     "load_template", "list_templates", "load", "save_state", "get", "update", "undo",
+    "_format_status_summary",
 ]

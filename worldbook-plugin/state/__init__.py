@@ -28,6 +28,7 @@ from typing import Any, Dict, List, Optional
 from ..schema import validate_and_fill, validate_write  # re-exported for backward compat
 
 from . import _core, _campaigns, _snapshots, _rules_dnd5e, _rules_dnd3r, _rules_coc7e
+from ._core import _format_status_summary
 
 logger = logging.getLogger(__name__)
 

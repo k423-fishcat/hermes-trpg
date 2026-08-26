@@ -6,10 +6,15 @@ from .registry import ToolRegistry
 def register(reg: ToolRegistry, state, chron):
     @reg.tool(
         name="trpg_check",
-        description="执行一次 DnD 5e 检定（技能/属性/豁免/死亡豁免）。自动从玩家状态读取加值，自动附规则引用，结果可追溯。所有需要掷骰子的判定必须调用此工具，不允许口述判定。",
+        description=(
+            "执行一次 DnD 5e 检定/掷骰判定（skill check / ability check / saving throw / death save）。"
+            "支持技能检定（如运动、隐匿、游说）、属性检定（力量、敏捷等）、豁免检定、死亡豁免。"
+            "自动从玩家状态读取加值，自动附规则引用，结果可追溯。"
+            "所有需要掷骰子（dice roll）的判定必须调用此工具，不允许口述判定。"
+        ),
         schema={
             "name": "trpg_check",
-            "description": "执行 DnD 5e 检定（技能/属性/豁免/死亡豁免）",
+            "description": "执行 DnD 5e 检定（技能/属性/豁免/死亡豁免），即 skill check / ability check / saving throw / dice roll",
             "parameters": {
                 "type": "object",
                 "properties": {

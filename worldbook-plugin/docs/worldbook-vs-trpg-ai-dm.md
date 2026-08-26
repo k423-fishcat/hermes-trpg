@@ -37,7 +37,7 @@
 | 核心文件分布 | 工具 3514 行 + 叙事 1709 行 + 状态 570 行 + 战斗 689 行 | `dm_agent.py` **单文件 2334 行**（单体） |
 | 数据存储 | 全部本地 JSON（人类可读） | SQLite（SQLAlchemy 异步）+ 本地 KB |
 | 多用户 | ❌ 单人 | ✅ 每用户隔离（剧本/存档/角色/媒体） |
-| 工具数量 | ~77 个 `trpg_*` 工具 | ~30 个 DM 工具（更少但更集成） |
+| 工具数量 | ~78 个 `trpg_*` 工具 | ~30 个 DM 工具（更少但更集成） |
 | 规则系统 | dnd5e / coc7e 模板 | dnd5e / dnd4e / coc / custom skill 包 |
 | RAG 后端 | 关键词 + OpenViking 向量 | jieba + TF-IDF + BM25（**零 token 成本**） |
 | 规则深度 | 完整 SRD（依赖 dnd-rules MCP） | 自己实现 5e/4e/COC 规则引擎 |
@@ -63,7 +63,7 @@ Hermes Agent
 ContextInjector (P0~P6 优先级配额)
    ↓ 注入到 user_message
 LLM (SOUL.md + Skills)
-   ↓ Function Calls (~77 个 trpg_* 工具)
+   ↓ Function Calls (~78 个 trpg_* 工具)
 Tools.py + 业务模块（combat/state/inventory/spells/...）
    ↓ 状态变更
 StateManager (原子写 + 快照 + Schema 校验)

@@ -41,6 +41,12 @@ def register(reg: ToolRegistry, ct):
             marker = "→ " if i == 0 else "  "
             icon = "🧙" if u.get("is_player") else "👹"
             lines.append(f"  {marker}{icon} {u['name']}（先攻 {u['initiative']}）")
+        if r.get("not_found"):
+            lines.append("")
+            lines.append("⚠️ 以下怪物未在图鉴中找到，已跳过：")
+            for mid in r["not_found"]:
+                lines.append(f"  • {mid}")
+            lines.append("请先用 trpg_monster_search 确认怪物 ID，或用 trpg_monster_import 导入。")
         lines.append(f"\n共 {r['creature_count']} 只怪物。用 trpg_combat_next_turn 推进回合。")
         return "\n".join(lines)
 

@@ -41,6 +41,23 @@ class TestStateIO:
         sm = make_state()
         assert sm.get("player.nonexistent.deep") is None
 
+    def test_ability_scores_migrated_to_abilities(self, make_state):
+        sm = make_state()
+        # 模拟旧状态：player.ability_scores 使用大写键
+        sm.update({
+            "player.ability_scores": {
+                "STR": 16, "DEX": 14, "CON": 15,
+                "INT": 10, "WIS": 12, "CHA": 8,
+            }
+        }, reason="inject legacy ability_scores")
+        # 触发 load() 迁移
+        sm._state = None
+        sm.load()
+        assert sm.get("player.ability_scores") is None
+        assert sm.get("player.abilities.str") == 16
+        assert sm.get("player.abilities.dex") == 14
+        assert sm.get("player.abilities.con") == 15
+
     def test_undo(self, make_state):
         sm = make_state()
         sm.update({"player.hp.current": 20}, reason="t")

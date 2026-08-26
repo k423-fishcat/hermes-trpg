@@ -71,10 +71,23 @@ class ToolRegistry:
         return decorator
 
     def register_all(self) -> int:
-        """把所有累积的工具推给 ctx，返回注册数"""
+        """把所有累积的工具推给 ctx，返回注册数
+
+        Hermes 实际调用 handler 时会传入 task_id/session_id 等系统 kwargs，
+        但所有 handler 签名都是 func(args)。这里包一层，过滤掉系统参数。
+        """
         for t in self._tools:
-            self._ctx.register_tool(**t)
+            entry = dict(t)
+            entry["handler"] = self._wrap_handler(t["handler"])
+            self._ctx.register_tool(**entry)
         return len(self._tools)
+
+    @staticmethod
+    def _wrap_handler(handler: Callable) -> Callable:
+        """包装 handler，使其兼容 Hermes 的 kwargs 调用"""
+        def wrapper(args, **_kwargs):
+            return handler(args)
+        return wrapper
 
 
 __all__ = ["ToolRegistry"]

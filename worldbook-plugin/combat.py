@@ -109,6 +109,7 @@ class CombatTracker:
         combat["initiative_order"] = []
         combat["creatures"] = {}
         combat["log"] = []
+        not_found = []
 
         # 添加玩家
         player_info = {
@@ -130,6 +131,7 @@ class CombatTracker:
 
                 template = self.bestiary.get_template_stats(mid)
                 if not template:
+                    not_found.append(mid or "?")
                     continue
 
                 for i in range(count):
@@ -158,6 +160,7 @@ class CombatTracker:
             for mspec in srd_monsters:
                 srd_data = mspec.get("srd_data")
                 if not srd_data:
+                    not_found.append(mspec.get("srd_key") or "?")
                     continue
                 count = mspec.get("count", 1)
                 prefix = mspec.get("display_prefix", "")
@@ -166,6 +169,7 @@ class CombatTracker:
                 # 转换 SRD 数据为模板格式
                 template = self._convert_srd_to_template(srd_data)
                 if not template:
+                    not_found.append(mspec.get("srd_key") or "?")
                     continue
 
                 for i in range(count):
@@ -228,6 +232,7 @@ class CombatTracker:
             "name": name or "遭遇战",
             "initiative_order": combat["initiative_order"],
             "creature_count": len(combat["creatures"]),
+            "not_found": not_found,
         }
 
     def add_creature(self, name: str, initiative: int,
@@ -640,9 +645,9 @@ class CombatTracker:
         这是轻量版转换，只提取战斗需要的字段。
         """
         try:
-            from bestiary_import import convert_creature_to_bestiary
+            from .bestiary_import_compat import convert_creature_to_bestiary
             return convert_creature_to_bestiary(srd_data)
-        except ImportError:
+        except Exception:
             # 回退：手动提取关键字段
             name = srd_data.get("name", "Unknown")
             key = srd_data.get("key", "")

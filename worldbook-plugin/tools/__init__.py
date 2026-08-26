@@ -28,7 +28,7 @@ from .registry import ToolRegistry
 
 
 def register_all_tools(ctx, app) -> int:
-    """注册所有 76 个 TRPG 工具到 ctx。
+    """注册所有 78 个 TRPG 工具到 ctx。
 
     Args:
         ctx: PluginContext（提供 ctx.register_tool）
@@ -80,6 +80,9 @@ def register_all_tools(ctx, app) -> int:
 
     from . import encounters
     encounters.register(reg, app.encounters)
+
+    from . import worldbook
+    worldbook.register(reg, app.worldbook_store)
 
     # 一次性推给 ctx
     n = reg.register_all()
