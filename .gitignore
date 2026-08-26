@@ -31,3 +31,6 @@ Thumbs.db
 # 部署 / secret
 *.env
 .env
+
+# 独立 MCP 项目（dnd-rules 等，各自有 git repo）
+mcp-projects/
